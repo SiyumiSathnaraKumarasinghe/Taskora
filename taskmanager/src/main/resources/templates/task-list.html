@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <!-- Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <!-- Google Fonts (for elegant typography) -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <style>
         /* Theme Styles */
@@ -76,21 +76,22 @@
         /* Card Styles */
         .task-card {
             border-radius: 12px;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             position: relative;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: box-shadow 0.3s ease, transform 0.3s ease;
             overflow: hidden;
             font-family: 'Roboto', sans-serif;
+            min-height: 200px; /* Reduced min-height */
         }
 
         .task-card:hover {
             transform: scale(1.02);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
 
         .dark-mode .task-card {
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
 
         .task-card.bg-custom-default {
@@ -142,7 +143,7 @@
         }
 
         .task-card .card-header {
-            padding: 0.75rem 1.25rem;
+            padding: 0.5rem 1rem;
             background-color: rgba(0, 0, 0, 0.03);
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             font-weight: 500;
@@ -154,19 +155,19 @@
         }
 
         .task-card .card-body {
-            padding: 1.25rem;
+            padding: 0.75rem; /* Reduced padding */
         }
 
         .task-card .card-title {
-            font-size: 1.15rem;
+            font-size: 1rem; /* Smaller font size */
             font-weight: 600;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
         }
 
         .task-card .card-text {
-            font-size: 0.9rem;
+            font-size: 0.85rem; /* Smaller font size */
             color: #6c757d;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem; /* Reduced margin */
         }
 
         .dark-mode .task-card .card-text {
@@ -175,24 +176,24 @@
 
         .task-card .card-actions {
             position: absolute;
-            top: 0.75rem;
-            right: 0.75rem;
+            top: 0.5rem;
+            right: 0.5rem;
         }
 
         .task-card .dropdown-menu {
             min-width: 120px;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            font-size: 0.9rem;
-            background-color: transparent; /* Removed white background */
+            font-size: 0.85rem;
+            background-color: transparent;
         }
 
         .dark-mode .task-card .dropdown-menu {
-            background-color: transparent !important; /* Removed white background in dark mode */
+            background-color: transparent !important;
         }
 
         .task-card .dropdown-item {
-            padding: 0.5rem 1rem;
+            padding: 0.4rem 0.8rem;
             transition: background-color 0.2s ease;
             border-radius: 4px;
             margin: 2px 4px;
@@ -268,10 +269,10 @@
         }
 
         .task-card .action-icon {
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: #6c757d;
             cursor: pointer;
-            margin-left: 0.75rem;
+            margin-left: 0.5rem;
             transition: color 0.2s ease, transform 0.2s ease;
         }
 
@@ -289,8 +290,8 @@
         }
 
         .task-card .status-indicator {
-            font-size: 0.85rem;
-            padding: 0.3rem 0.75rem;
+            font-size: 0.8rem;
+            padding: 0.25rem 0.5rem;
             border-radius: 6px;
             display: inline-block;
             cursor: pointer;
@@ -317,12 +318,12 @@
             color: #fff3cd;
         }
 
-        /* Elegant Form Styles (for Search Input) */
+        /* Elegant Form Styles */
         .elegant-input {
             border: 1px solid #d1d5db;
             border-radius: 8px;
-            padding: 0.75rem 1rem;
-            font-size: 0.95rem;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
             background-color: #fff;
@@ -346,13 +347,13 @@
             box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.3) !important;
         }
 
-        /* Deadline Display in Cards */
+        /* Deadline Display */
         .deadline-display {
             display: flex;
             align-items: center;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #6c757d;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
         }
 
         .dark-mode .deadline-display {
@@ -360,7 +361,7 @@
         }
 
         .deadline-display i {
-            margin-right: 0.5rem;
+            margin-right: 0.4rem;
             color: #6366f1;
         }
 
@@ -371,7 +372,7 @@
         /* Heading Styles */
         .elegant-heading {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
+            font-size: 2rem;
             display: flex;
             align-items: center;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -420,8 +421,8 @@
         /* No Tasks Message */
         .no-tasks {
             text-align: center;
-            padding: 2rem;
-            font-size: 1.1rem;
+            padding: 1.5rem;
+            font-size: 1rem;
             color: #6c757d;
             font-family: 'Roboto', sans-serif;
         }
@@ -433,8 +434,8 @@
         /* Header Container */
         .header-container {
             position: relative;
-            padding-top: 2.5rem;
-            padding-bottom: 1rem;
+            padding-top: 2rem;
+            padding-bottom: 0.5rem;
         }
 
         /* Icons Container */
@@ -446,8 +447,8 @@
     </style>
 </head>
 <body onload="applyTheme()" class="light-mode">
-    <div class="container mx-auto mt-5 px-4">
-        <div class="mb-4">
+    <div class="container mx-auto mt-4 px-3">
+        <div class="mb-3">
             <div class="header-container">
                 <div class="flex justify-center">
                     <h2 class="elegant-heading"><span>🌸 Taskora - Task List 🌸</span></h2>
@@ -475,7 +476,7 @@
         </div>
 
         <!-- Search Form -->
-        <form th:action="@{/tasks/list}" method="get" class="mb-6 flex justify-center">
+        <form th:action="@{/tasks/list}" method="get" class="mb-4 flex justify-center">
             <input type="text" name="keyword" th:value="${keyword}" placeholder="🔍 Search tasks..."
                    class="elegant-input w-full max-w-md shadow-sm" />
         </form>
@@ -485,7 +486,7 @@
             <div th:unless="${tasks} and ${tasks.size() > 0}" class="no-tasks">
                 No tasks found. Create a new task to get started!
             </div>
-            <div th:each="task : ${tasks}" class="col-md-4 col-sm-6 mb-4">
+            <div th:each="task : ${tasks}" class="col-lg-3 col-md-4 col-sm-6 mb-3">
                 <div class="card task-card shadow-sm bg-custom-default" th:data-task-id="${task.id}">
                     <div class="card-header">
                         <h5 class="card-title mb-0" th:text="${task.title}"></h5>
@@ -515,7 +516,7 @@
                             <small class="text-muted">ID: <span th:text="${task.id}"></span></small>
                         </p>
                         <p class="card-text">
-                            <small class="text-muted">Created Date: <span th:text="${task.createdDate}"></span></small>
+                            <small class="text-muted">Created: <span th:text="${task.createdDate}"></span></small>
                         </p>
                         <p class="deadline-display">
                             <i class="bi bi-calendar mr-2"></i>
@@ -561,7 +562,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Theme Toggle and Card Color Script -->
     <script>
-        // Theme Toggle
         function toggleTheme() {
             const body = document.body;
             const theme = body.classList.contains('dark-mode') ? 'light-mode' : 'dark-mode';
@@ -572,7 +572,6 @@
         function applyTheme() {
             const savedTheme = localStorage.getItem('theme') || 'light-mode';
             document.body.className = savedTheme;
-            // Apply saved card colors
             const taskCards = document.querySelectorAll('.task-card');
             taskCards.forEach(card => {
                 const taskId = card.getAttribute('data-task-id');
@@ -586,14 +585,11 @@
 
         function changeCardColor(event, taskId, color) {
             event.preventDefault();
-            console.log(`Changing color for task ${taskId} to ${color}`);
             const card = document.querySelector(`.task-card[data-task-id="${taskId}"]`);
             if (card) {
                 card.classList.remove('bg-custom-default', 'bg-custom-purple', 'bg-custom-blue', 'bg-custom-yellow', 'bg-custom-pink', 'bg-custom-orange');
                 card.classList.add(`bg-custom-${color}`);
                 localStorage.setItem(`card-color-${taskId}`, color);
-            } else {
-                console.error(`Card with task ID ${taskId} not found`);
             }
         }
     </script>
