@@ -46,233 +46,11 @@
         }
 
         body.light-mode .theme-toggle svg {
-            fill: #fff; /* White for contrast on gradient background */
+            fill: #fff;
         }
 
         body.dark-mode .theme-toggle svg {
-            fill: #e0e0e0; /* Light gray for dark mode */
-        }
-
-        /* PDF Toggle Button */
-        .pdf-toggle {
-            background: linear-gradient(135deg, #ec4899 0%, #d946ef 100%);
-            border: none;
-            padding: 0.5rem;
-            border-radius: 50%;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .pdf-toggle:hover {
-            background: linear-gradient(135deg, #d946ef 0%, #ec4899 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        .dark-mode .pdf-toggle {
-            background: linear-gradient(135deg, #9d174d 0%, #a21caf 100%);
-        }
-
-        .dark-mode .pdf-toggle:hover {
-            background: linear-gradient(135deg, #a21caf 0%, #9d174d 100%);
-        }
-
-        .pdf-toggle svg {
-            transition: fill 0.3s ease;
-        }
-
-        body.light-mode .pdf-toggle svg {
-            fill: #fff; /* White for contrast on gradient background */
-        }
-
-        body.dark-mode .pdf-toggle svg {
-            fill: #e0e0e0; /* Light gray for dark mode */
-        }
-
-        /* Priority Badges for Themes */
-        .dark-mode .badge.bg-danger {
-            background-color: #a71d2a !important;
-        }
-
-        .dark-mode .badge.bg-warning {
-            background-color: #cc9a06 !important;
-            color: #e0e0e0 !important;
-        }
-
-        .dark-mode .badge.bg-success {
-            background-color: #1f7a38 !important;
-        }
-
-        /* Card Styles */
-        .task-card {
-            border-radius: 12px;
-            margin-bottom: 1.5rem;
-            position: relative;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: box-shadow 0.2s ease, transform 0.2s ease;
-            overflow: hidden;
-        }
-
-        .task-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        .dark-mode .task-card {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        .task-card.bg-custom-default {
-            background-color: #ffffff;
-        }
-
-        .dark-mode .task-card.bg-custom-default {
-            background-color: #2a2a40 !important;
-        }
-
-        .task-card.bg-custom-purple {
-            background-color: #e6d9fa; /* Light purple */
-        }
-
-        .dark-mode .task-card.bg-custom-purple {
-            background-color: #6b5b95 !important; /* Darker purple */
-        }
-
-        .task-card.bg-custom-blue {
-            background-color: #d1e7fd; /* Light blue */
-        }
-
-        .dark-mode .task-card.bg-custom-blue {
-            background-color: #2c4f7c !important; /* Darker blue */
-        }
-
-        .task-card.bg-custom-yellow {
-            background-color: #fef7cc; /* Light yellow */
-        }
-
-        .dark-mode .task-card.bg-custom-yellow {
-            background-color: #d4a017 !important; /* Darker yellow */
-        }
-
-        .task-card.bg-custom-pink {
-            background-color: #fce4ec; /* Light pink */
-        }
-
-        .dark-mode .task-card.bg-custom-pink {
-            background-color: #b84b6b !important; /* Darker pink */
-        }
-
-        .task-card.bg-custom-orange {
-            background-color: #ffedd5; /* Light orange */
-        }
-
-        .dark-mode .task-card.bg-custom-orange {
-            background-color: #e07b39 !important; /* Darker orange */
-        }
-
-        .task-card .card-header {
-            padding: 0.75rem 1.25rem;
-            background-color: rgba(0, 0, 0, 0.03);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .dark-mode .task-card .card-header {
-            background-color: rgba(255, 255, 255, 0.05);
-            border-bottom-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .task-card .card-body {
-            padding: 1rem;
-        }
-
-        .task-card .card-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .task-card .card-text {
-            font-size: 0.85rem;
-            color: #6c757d;
-            margin-bottom: 0.5rem;
-        }
-
-        .dark-mode .task-card .card-text {
-            color: #b0b0b0;
-        }
-
-        .task-card .card-actions {
-            position: absolute;
-            top: 0.75rem;
-            right: 0.75rem;
-        }
-
-        .task-card .dropdown-menu {
-            min-width: 120px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .task-card .dropdown-item {
-            font-size: 0.85rem;
-            padding: 0.5rem 1rem;
-            transition: background-color 0.2s ease;
-        }
-
-        .task-card .dropdown-item:hover {
-            background-color: #f0f0f0;
-        }
-
-        .dark-mode .task-card .dropdown-item:hover {
-            background-color: #3a3a4a;
-        }
-
-        .task-card .action-icon {
-            font-size: 1rem;
-            color: #6c757d;
-            cursor: pointer;
-            margin-left: 0.5rem;
-            transition: color 0.2s ease;
-        }
-
-        .task-card .action-icon:hover {
-            color: #212529;
-        }
-
-        .dark-mode .task-card .action-icon {
-            color: #b0b0b0;
-        }
-
-        .dark-mode .task-card .action-icon:hover {
-            color: #e0e0e0;
-        }
-
-        .task-card .status-indicator {
-            font-size: 0.8rem;
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            display: inline-block;
-            cursor: pointer;
-        }
-
-        .task-card .status-indicator.completed {
-            background-color: #d4edda;
-            color: #155724;
-        }
-
-        .dark-mode .task-card .status-indicator.completed {
-            background-color: #1f7a38;
-            color: #d4edda;
-        }
-
-        .task-card .status-indicator.not-completed {
-            background-color: #fff3cd;
-            color: #856404;
-        }
-
-        .dark-mode .task-card .status-indicator.not-completed {
-            background-color: #cc9a06;
-            color: #fff3cd;
+            fill: #e0e0e0;
         }
 
         /* Elegant Form Styles */
@@ -342,34 +120,11 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
         }
 
-        /* Deadline Display in Cards */
-        .deadline-display {
-            display: flex;
-            align-items: center;
-            font-size: 0.85rem;
-            color: #6c757d;
-            margin-bottom: 0.5rem;
-        }
-
-        .dark-mode .deadline-display {
-            color: #b0b0b0;
-        }
-
-        .deadline-display i {
-            margin-right: 0.5rem;
-            color: #6366f1;
-        }
-
-        .dark-mode .deadline-display i {
-            color: #818cf8;
-        }
-
-        /* Heading and Current Date/Time Styles */
+        /* Heading Styles */
         .elegant-heading {
             font-family: 'Playfair Display', serif;
             font-size: 2.5rem;
             display: flex;
-            justify-content: center;
             align-items: center;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
@@ -418,31 +173,41 @@
         .pdf-export-button {
             display: none;
         }
+
+        /* Header Container */
+        .header-container {
+            position: relative;
+            padding-top: 2.5rem;
+            padding-bottom: 1rem;
+        }
+
+        /* Icons Container */
+        .icons-container {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+        }
     </style>
 </head>
 <body onload="applyTheme()" class="light-mode">
     <div class="container mx-auto mt-5 px-4">
         <div class="mb-4">
-            <div class="flex justify-center items-center mb-3">
-                <h2 class="elegant-heading"><span>🌸 My Task Manager 🌸</span></h2>
-                <div class="flex items-center ml-4 space-x-2">
+            <div class="header-container">
+                <div class="flex justify-center">
+                    <h2 class="elegant-heading"><span>🌸 Taskora 🌸</span></h2>
+                </div>
+                <div class="icons-container flex items-center space-x-2">
                     <button class="theme-toggle" onclick="toggleTheme()" title="Switch Theme">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-circle-half" viewBox="0 0 16 16">
                             <path d="M8 15A7 7 0 1 1 8 1v14z" />
                         </svg>
                     </button>
-                    <a href="/tasks/export/pdf" class="pdf-toggle" title="Export to PDF">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-earmark-pdf" viewBox="0 0 16 16">
-                            <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
-                            <path d="M4.603 14.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.697 19.697 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.188-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.066.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.712 5.712 0 0 1-.911-.95 11.651 11.651 0 0 0-1.997.406 11.307 11.307 0 0 1-1.02 1.51c-.292.35-.609.656-.927.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.137-.271.304-.561.297a.93.93 0 0 1-.408-.11 3.97 3.97 0 0 1-.558-.279c.02-.185.06-.391.139-.605a6.915 6.915 0 0 0 .558-1.657 7.737 7.737 0 0 0 .433 1.499z"/>
-                        </svg>
-                    </a>
                 </div>
             </div>
         </div>
 
         <!-- Search Form -->
-        <form th:action="@{/tasks}" method="get" class="mb-4 flex justify-center">
+        <form th:action="@{/tasks/list}" method="get" class="mb-4 flex justify-center">
             <input type="text" name="keyword" th:value="${keyword}" placeholder="🔍 Search tasks..."
                    class="elegant-input w-full max-w-md shadow-sm" />
         </form>
@@ -480,77 +245,9 @@
             <button type="submit" class="elegant-button">💾 Save Task</button>
         </form>
 
-        <!-- Task Cards -->
-        <div class="row" id="taskContainer">
-            <div th:each="task : ${tasks}" class="col-md-3 col-sm-6 mb-4">
-                <div class="card task-card shadow-sm bg-custom-default" th:data-task-id="${task.id}">
-                    <div class="card-header">
-                        <h5 class="card-title mb-0" th:text="${task.title}"></h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-actions">
-                            <div class="dropdown">
-                                <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="dropdown"
-                                        aria-expanded="false">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                         class="bi bi-three-dots" viewBox="0 0 16 16">
-                                        <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
-                                    </svg>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#" th:onclick="|changeCardColor(event, '${task.id}', 'default')|">Default</a></li>
-                                    <li><a class="dropdown-item" href="#" th:onclick="|changeCardColor(event, '${task.id}', 'purple')|">Purple</a></li>
-                                    <li><a class="dropdown-item" href="#" th:onclick="|changeCardColor(event, '${task.id}', 'blue')|">Blue</a></li>
-                                    <li><a class="dropdown-item" href="#" th:onclick="|changeCardColor(event, '${task.id}', 'yellow')|">Yellow</a></li>
-                                    <li><a class="dropdown-item" href="#" th:onclick="|changeCardColor(event, '${task.id}', 'pink')|">Pink</a></li>
-                                    <li><a class="dropdown-item" href="#" th:onclick="|changeCardColor(event, '${task.id}', 'orange')|">Orange</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <p class="card-text" th:text="${task.description}"></p>
-                        <p class="card-text">
-                            <small class="text-muted">ID: <span th:text="${task.id}"></span></small>
-                        </p>
-                        <p class="card-text">
-                            <small class="text-muted">Created Date: <span th:text="${task.createdDate}"></span></small>
-                        </p>
-                        <p class="deadline-display">
-                            <i class="bi bi-calendar mr-2"></i>
-                            Deadline: 
-                            <span th:if="${task.deadlineDate} != null and ${task.deadlineTime} != null">
-                                <span th:text="${task.deadlineDate}"></span>
-                                <i class="bi bi-clock ml-2 mr-2"></i>
-                                <span th:text="${task.deadlineTime}"></span>
-                            </span>
-                            <span th:unless="${task.deadlineDate} != null and ${task.deadlineTime} != null">Not Set</span>
-                        </p>
-                        <p class="card-text">
-                            <span th:switch="${task.priority}">
-                                <span th:case="'HIGH'" class="badge bg-danger">🔥 High</span>
-                                <span th:case="'MEDIUM'" class="badge bg-warning text-dark">⚠️ Medium</span>
-                                <span th:case="'LOW'" class="badge bg-success">✅ Low</span>
-                                <span th:case="*">-</span>
-                            </span>
-                        </p>
-                        <p class="card-text">
-                            <form th:action="@{/tasks/toggle/{id}(id=${task.id})}" method="post" style="display: inline;">
-                                <span class="status-indicator" th:classappend="${task.completed} ? 'completed' : 'not-completed'" onclick="this.parentNode.submit();">
-                                    <i class="bi" th:class="${task.completed} ? 'bi-check-circle' : 'bi-clock'"></i>
-                                    <span th:text="${task.completed} ? 'Completed' : 'Not Completed'"></span>
-                                </span>
-                            </form>
-                        </p>
-                        <div class="d-flex justify-content-end">
-                            <a th:href="@{/tasks/edit/{id}(id=${task.id})}" class="action-icon me-2" title="Edit">
-                                <i class="bi bi-pencil"></i>
-                            </a>
-                            <a th:href="@{/tasks/delete/{id}(id=${task.id})}" class="action-icon" title="Delete">
-                                <i class="bi bi-trash"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- Navigation to Task List -->
+        <div class="flex justify-center mb-5">
+            <a href="/tasks/list" class="elegant-button">📋 View All Tasks</a>
         </div>
     </div>
 
@@ -558,7 +255,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Flatpickr JS -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <!-- Theme Toggle, Card Color, and Flatpickr Initialization Script -->
+    <!-- Theme Toggle and Flatpickr Initialization Script -->
     <script>
         // Initialize Flatpickr for Deadline Date
         flatpickr("#deadlineDate", {
@@ -580,7 +277,7 @@
             }
         });
 
-        // Theme Toggle and Card Color Functions
+        // Theme Toggle
         function toggleTheme() {
             const body = document.body;
             const theme = body.classList.contains('dark-mode') ? 'light-mode' : 'dark-mode';
@@ -591,29 +288,6 @@
         function applyTheme() {
             const savedTheme = localStorage.getItem('theme') || 'light-mode';
             document.body.className = savedTheme;
-            // Apply saved card colors
-            const taskCards = document.querySelectorAll('.task-card');
-            taskCards.forEach(card => {
-                const taskId = card.getAttribute('data-task-id');
-                const savedColor = localStorage.getItem(`card-color-${taskId}`);
-                if (savedColor) {
-                    card.classList.remove('bg-custom-default', 'bg-custom-purple', 'bg-custom-blue', 'bg-custom-yellow', 'bg-custom-pink', 'bg-custom-orange');
-                    card.classList.add(`bg-custom-${savedColor}`);
-                }
-            });
-        }
-
-        function changeCardColor(event, taskId, color) {
-            event.preventDefault();
-            console.log(`Changing color for task ${taskId} to ${color}`);
-            const card = document.querySelector(`.task-card[data-task-id="${taskId}"]`);
-            if (card) {
-                card.classList.remove('bg-custom-default', 'bg-custom-purple', 'bg-custom-blue', 'bg-custom-yellow', 'bg-custom-pink', 'bg-custom-orange');
-                card.classList.add(`bg-custom-${color}`);
-                localStorage.setItem(`card-color-${taskId}`, color);
-            } else {
-                console.error(`Card with task ID ${taskId} not found`);
-            }
         }
     </script>
 </body>

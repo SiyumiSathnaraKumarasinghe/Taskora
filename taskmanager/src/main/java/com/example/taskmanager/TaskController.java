@@ -22,34 +22,45 @@ public class TaskController {
     private TaskRepository taskRepo;
 
     @GetMapping("/tasks")
-    public String listTasks(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
+    public String showTaskForm(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
         List<Task> tasks = (keyword != null && !keyword.isEmpty())
                 ? taskRepo.findByTitleContainingIgnoreCase(keyword)
                 : taskRepo.findAll();
 
         model.addAttribute("tasks", tasks);
         model.addAttribute("task", new Task());
-        model.addAttribute("keyword", keyword);
+        model.addAttribute("keyword", keyword != null ? keyword : "");
         return "tasks";
+    }
+
+    @GetMapping("/tasks/list")
+    public String listTasks(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
+        List<Task> tasks = (keyword != null && !keyword.isEmpty())
+                ? taskRepo.findByTitleContainingIgnoreCase(keyword)
+                : taskRepo.findAll();
+
+        model.addAttribute("tasks", tasks);
+        model.addAttribute("keyword", keyword != null ? keyword : "");
+        return "task-list";
     }
 
     @PostMapping("/tasks")
     public String saveTask(@ModelAttribute Task task) {
-        if (task.getDeadlineDate() == null) task.setDeadlineDate(LocalDate.now()); // Default to today if not set
+        if (task.getDeadlineDate() == null) task.setDeadlineDate(LocalDate.now());
         taskRepo.save(task);
-        return "redirect:/tasks";
+        return "redirect:/tasks/list";
     }
 
     @GetMapping("/tasks/delete/{id}")
     public String deleteTask(@PathVariable Long id) {
         taskRepo.deleteById(id);
-        return "redirect:/tasks";
+        return "redirect:/tasks/list";
     }
 
     @GetMapping("/tasks/edit/{id}")
     public String editTask(@PathVariable Long id, Model model) {
         model.addAttribute("task", taskRepo.findById(id).orElse(new Task()));
-        model.addAttribute("tasks", taskRepo.findAll());
+        model.addAttribute("keyword", "");
         return "tasks";
     }
 
@@ -60,7 +71,7 @@ public class TaskController {
             task.setCompleted(!task.isCompleted());
             taskRepo.save(task);
         }
-        return "redirect:/tasks";
+        return "redirect:/tasks/list";
     }
 
     @GetMapping("/tasks/export/pdf")
