@@ -184,11 +184,18 @@
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             font-size: 0.9rem;
+            background-color: transparent; /* Removed white background */
+        }
+
+        .dark-mode .task-card .dropdown-menu {
+            background-color: transparent !important; /* Removed white background in dark mode */
         }
 
         .task-card .dropdown-item {
             padding: 0.5rem 1rem;
             transition: background-color 0.2s ease;
+            border-radius: 4px;
+            margin: 2px 4px;
         }
 
         .task-card .dropdown-item:hover {
@@ -197,6 +204,67 @@
 
         .dark-mode .task-card .dropdown-item:hover {
             background-color: #3a3a4a;
+        }
+
+        /* Dropdown Item Color Previews */
+        .dropdown-item-default {
+            background-color: #ffffff;
+            color: #212529;
+        }
+
+        .dark-mode .dropdown-item-default {
+            background-color: #2a2a40;
+            color: #e0e0e0;
+        }
+
+        .dropdown-item-purple {
+            background-color: #e6d9fa;
+            color: #212529;
+        }
+
+        .dark-mode .dropdown-item-purple {
+            background-color: #6b5b95;
+            color: #e0e0e0;
+        }
+
+        .dropdown-item-blue {
+            background-color: #d1e7fd;
+            color: #212529;
+        }
+
+        .dark-mode .dropdown-item-blue {
+            background-color: #2c4f7c;
+            color: #e0e0e0;
+        }
+
+        .dropdown-item-yellow {
+            background-color: #fef7cc;
+            color: #212529;
+        }
+
+        .dark-mode .dropdown-item-yellow {
+            background-color: #d4a017;
+            color: #e0e0e0;
+        }
+
+        .dropdown-item-pink {
+            background-color: #fce4ec;
+            color: #212529;
+        }
+
+        .dark-mode .dropdown-item-pink {
+            background-color: #b84b6b;
+            color: #e0e0e0;
+        }
+
+        .dropdown-item-orange {
+            background-color: #ffedd5;
+            color: #212529;
+        }
+
+        .dark-mode .dropdown-item-orange {
+            background-color: #e07b39;
+            color: #e0e0e0;
         }
 
         .task-card .action-icon {
@@ -433,12 +501,12 @@
                                     </svg>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#" th:onclick="|changeCardColor(event, '${task.id}', 'default')|">Default</a></li>
-                                    <li><a class="dropdown-item" href="#" th:onclick="|changeCardColor(event, '${task.id}', 'purple')|">Purple</a></li>
-                                    <li><a class="dropdown-item" href="#" th:onclick="|changeCardColor(event, '${task.id}', 'blue')|">Blue</a></li>
-                                    <li><a class="dropdown-item" href="#" th:onclick="|changeCardColor(event, '${task.id}', 'yellow')|">Yellow</a></li>
-                                    <li><a class="dropdown-item" href="#" th:onclick="|changeCardColor(event, '${task.id}', 'pink')|">Pink</a></li>
-                                    <li><a class="dropdown-item" href="#" th:onclick="|changeCardColor(event, '${task.id}', 'orange')|">Orange</a></li>
+                                    <li><a class="dropdown-item dropdown-item-default" href="#" th:onclick="|changeCardColor(event, '${task.id}', 'default')|">Default</a></li>
+                                    <li><a class="dropdown-item dropdown-item-purple" href="#" th:onclick="|changeCardColor(event, '${task.id}', 'purple')|">Purple</a></li>
+                                    <li><a class="dropdown-item dropdown-item-blue" href="#" th:onclick="|changeCardColor(event, '${task.id}', 'blue')|">Blue</a></li>
+                                    <li><a class="dropdown-item dropdown-item-yellow" href="#" th:onclick="|changeCardColor(event, '${task.id}', 'yellow')|">Yellow</a></li>
+                                    <li><a class="dropdown-item dropdown-item-pink" href="#" th:onclick="|changeCardColor(event, '${task.id}', 'pink')|">Pink</a></li>
+                                    <li><a class="dropdown-item dropdown-item-orange" href="#" th:onclick="|changeCardColor(event, '${task.id}', 'orange')|">Orange</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -461,9 +529,9 @@
                         </p>
                         <p class="card-text">
                             <span th:switch="${task.priority}">
-                                <span th:case="'HIGH'" class="badge bg-danger">🔥 High</span>
-                                <span th:case="'MEDIUM'" class="badge bg-warning text-dark">⚠️ Medium</span>
-                                <span th:case="'LOW'" class="badge bg-success">✅ Low</span>
+                                <span th:case="'HIGH'" class="badge bg-danger">🚨 High</span>
+                                <span th:case="'MEDIUM'" class="badge bg-warning text-dark">🔔 Medium</span>
+                                <span th:case="'LOW'" class="badge bg-success">🌿 Low</span>
                                 <span th:case="*">-</span>
                             </span>
                         </p>
