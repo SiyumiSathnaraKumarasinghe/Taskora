@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import com.lowagie.text.Document;
@@ -33,6 +35,7 @@ public class TaskController {
 
     @PostMapping("/tasks")
     public String saveTask(@ModelAttribute Task task) {
+        if (task.getDeadlineDate() == null) task.setDeadlineDate(LocalDate.now()); // Default to today if not set
         taskRepo.save(task);
         return "redirect:/tasks";
     }
@@ -45,7 +48,7 @@ public class TaskController {
 
     @GetMapping("/tasks/edit/{id}")
     public String editTask(@PathVariable Long id, Model model) {
-        model.addAttribute("task", taskRepo.findById(id).orElse(null));
+        model.addAttribute("task", taskRepo.findById(id).orElse(new Task()));
         model.addAttribute("tasks", taskRepo.findAll());
         return "tasks";
     }
@@ -60,22 +63,24 @@ public class TaskController {
         return "redirect:/tasks";
     }
 
-    // ✅ PDF Export Endpoint
     @GetMapping("/tasks/export/pdf")
     public void exportToPDF(HttpServletResponse response) throws IOException {
         response.setContentType("application/pdf");
         response.setHeader("Content-Disposition", "attachment; filename=tasks.pdf");
 
         List<Task> tasks = taskRepo.findAll();
-
         Document document = new Document();
         PdfWriter.getInstance(document, response.getOutputStream());
         document.open();
 
         document.add(new Paragraph("📋 Task List\n\n"));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         for (Task task : tasks) {
+            String deadline = (task.getDeadlineDate() != null && task.getDeadlineTime() != null)
+                    ? task.getDeadlineDate().atTime(task.getDeadlineTime()).format(formatter)
+                    : "No Deadline";
             document.add(new Paragraph(
-                    String.format("- %s [%s]", task.getTitle(), task.isCompleted() ? "✅ Completed" : "⏳ Not Completed")
+                    String.format("- %s [%s] | Deadline: %s", task.getTitle(), task.isCompleted() ? "✅ Completed" : "⏳ Not Completed", deadline)
             ));
         }
 

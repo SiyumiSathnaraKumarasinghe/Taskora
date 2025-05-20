@@ -2,10 +2,19 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>🌸 My Task Manager 🌸</title>
+    <title>🌸 Taskora 🌸</title>
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/light.css">
+    <!-- Google Fonts (for elegant typography) -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <style>
+        /* Theme Styles */
         body.light-mode {
             background-color: #f4f7fc;
             color: #212529;
@@ -16,84 +25,19 @@
             color: #e0e0e0;
         }
 
-        .container {
-            max-width: 1200px;
-        }
-
-        .card,
-        .form-control,
-        textarea {
-            transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
-        }
-
         .dark-mode .card,
         .dark-mode .form-control,
-        .dark-mode textarea {
+        .dark-mode textarea,
+        .dark-mode .flatpickr-input {
             background-color: #2a2a40 !important;
-            color: #e0e0e0;
-            border-color: #444;
-        }
-
-        .form-control,
-        textarea,
-        .form-select {
-            border-radius: 8px;
-        }
-
-        .dark-mode .form-select {
-            background-color: #2a2a40 !important;
-            color: #e0e0e0;
-            border-color: #444;
-        }
-
-        .btn {
-            border-radius: 6px;
-            font-weight: 500;
-            transition: background-color 0.2s ease, transform 0.1s ease;
-        }
-
-        .btn:hover {
-            transform: translateY(-1px);
-        }
-
-        .btn-export {
-            font-size: 0.95rem;
-            font-weight: 600;
-        }
-
-        .dark-mode .btn-export {
-            background-color: #444 !important;
-            color: #f8f9fa !important;
-            border: 1px solid #888;
-        }
-
-        .btn-success {
-            background-color: #28a745;
-            color: #fff;
-        }
-
-        .btn-warning {
-            background-color: #ffc107;
-            color: #212529;
-        }
-
-        .dark-mode .btn-warning {
             color: #e0e0e0 !important;
+            border-color: #444 !important;
         }
 
-        .btn-info {
-            background-color: #17a2b8;
-            color: #fff;
-        }
-
-        .btn-danger {
-            background-color: #dc3545;
-            color: #fff;
-        }
-
-        .btn-outline-dark:hover {
-            background-color: #343a40;
-            color: #fff;
+        .dark-mode input::placeholder,
+        .dark-mode textarea::placeholder {
+            color: #b0b0b0;
+            opacity: 1;
         }
 
         /* Theme Icon Colors */
@@ -102,11 +46,47 @@
         }
 
         body.light-mode .theme-toggle svg {
-            fill: #d4af37; /* Gold */
+            fill: #fff; /* White for contrast on gradient background */
         }
 
         body.dark-mode .theme-toggle svg {
-            fill: #b0b0b0; /* Ash */
+            fill: #e0e0e0; /* Light gray for dark mode */
+        }
+
+        /* PDF Toggle Button */
+        .pdf-toggle {
+            background: linear-gradient(135deg, #ec4899 0%, #d946ef 100%);
+            border: none;
+            padding: 0.5rem;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .pdf-toggle:hover {
+            background: linear-gradient(135deg, #d946ef 0%, #ec4899 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .dark-mode .pdf-toggle {
+            background: linear-gradient(135deg, #9d174d 0%, #a21caf 100%);
+        }
+
+        .dark-mode .pdf-toggle:hover {
+            background: linear-gradient(135deg, #a21caf 0%, #9d174d 100%);
+        }
+
+        .pdf-toggle svg {
+            transition: fill 0.3s ease;
+        }
+
+        body.light-mode .pdf-toggle svg {
+            fill: #fff; /* White for contrast on gradient background */
+        }
+
+        body.dark-mode .pdf-toggle svg {
+            fill: #e0e0e0; /* Light gray for dark mode */
         }
 
         /* Priority Badges for Themes */
@@ -121,12 +101,6 @@
 
         .dark-mode .badge.bg-success {
             background-color: #1f7a38 !important;
-        }
-
-        .dark-mode input::placeholder,
-        .dark-mode textarea::placeholder {
-            color: #b0b0b0;
-            opacity: 1;
         }
 
         /* Card Styles */
@@ -300,54 +274,210 @@
             background-color: #cc9a06;
             color: #fff3cd;
         }
+
+        /* Elegant Form Styles */
+        .elegant-input,
+        .elegant-textarea,
+        .elegant-select,
+        .flatpickr-input {
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            padding: 0.75rem;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            background-color: #fff;
+        }
+
+        .elegant-input:focus,
+        .elegant-textarea:focus,
+        .elegant-select:focus,
+        .flatpickr-input:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+            outline: none;
+        }
+
+        .dark-mode .elegant-input,
+        .dark-mode .elegant-textarea,
+        .dark-mode .elegant-select,
+        .dark-mode .flatpickr-input {
+            border-color: #444 !important;
+            background-color: #2a2a40 !important;
+        }
+
+        .dark-mode .elegant-input:focus,
+        .dark-mode .elegant-textarea:focus,
+        .dark-mode .elegant-select:focus,
+        .dark-mode .flatpickr-input:focus {
+            border-color: #818cf8 !important;
+            box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.3) !important;
+        }
+
+        .elegant-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+
+        .dark-mode .elegant-label {
+            color: #d1d5db;
+        }
+
+        /* Form Button */
+        .elegant-button {
+            background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .elegant-button:hover {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Deadline Display in Cards */
+        .deadline-display {
+            display: flex;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-bottom: 0.5rem;
+        }
+
+        .dark-mode .deadline-display {
+            color: #b0b0b0;
+        }
+
+        .deadline-display i {
+            margin-right: 0.5rem;
+            color: #6366f1;
+        }
+
+        .dark-mode .deadline-display i {
+            color: #818cf8;
+        }
+
+        /* Heading and Current Date/Time Styles */
+        .elegant-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .elegant-heading span {
+            background: linear-gradient(90deg, #4f46e5 0%, #a855f7 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-fill-color: transparent;
+        }
+
+        .dark-mode .elegant-heading span {
+            background: linear-gradient(90deg, #818cf8 0%, #d8b4fe 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-fill-color: transparent;
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            background: linear-gradient(135deg, #f97316 0%, #ef4444 100%);
+            border: none;
+            padding: 0.5rem;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: linear-gradient(135deg, #ef4444 0%, #f97316 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .dark-mode .theme-toggle {
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+        }
+
+        .dark-mode .theme-toggle:hover {
+            background: linear-gradient(135deg, #4b5563 0%, #6b7280 100%);
+        }
+
+        /* Hide old PDF export button style */
+        .pdf-export-button {
+            display: none;
+        }
     </style>
 </head>
 <body onload="applyTheme()" class="light-mode">
-    <div class="container mt-5">
-        <div class="mb-4 text-center position-relative">
-            <h2 class="text-primary fw-bold">🌸 My Task Manager 🌸</h2>
-            <!-- Theme Toggle Button -->
-            <button class="btn btn-outline-secondary theme-toggle position-absolute end-0 top-0 mt-1 me-2"
-                    onclick="toggleTheme()" title="Switch Theme">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                     class="bi bi-circle-half" viewBox="0 0 16 16">
-                    <path d="M8 15A7 7 0 1 1 8 1v14z" />
-                </svg>
-            </button>
-        </div>
-
-        <!-- Export Button -->
-        <div class="text-end mb-3">
-            <a href="/tasks/export/pdf" class="btn btn-export btn-outline-dark">📄 PDF</a>
+    <div class="container mx-auto mt-5 px-4">
+        <div class="mb-4">
+            <div class="flex justify-center items-center mb-3">
+                <h2 class="elegant-heading"><span>🌸 My Task Manager 🌸</span></h2>
+                <div class="flex items-center ml-4 space-x-2">
+                    <button class="theme-toggle" onclick="toggleTheme()" title="Switch Theme">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-circle-half" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1v14z" />
+                        </svg>
+                    </button>
+                    <a href="/tasks/export/pdf" class="pdf-toggle" title="Export to PDF">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-earmark-pdf" viewBox="0 0 16 16">
+                            <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+                            <path d="M4.603 14.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.697 19.697 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.188-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.066.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.712 5.712 0 0 1-.911-.95 11.651 11.651 0 0 0-1.997.406 11.307 11.307 0 0 1-1.02 1.51c-.292.35-.609.656-.927.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.137-.271.304-.561.297a.93.93 0 0 1-.408-.11 3.97 3.97 0 0 1-.558-.279c.02-.185.06-.391.139-.605a6.915 6.915 0 0 0 .558-1.657 7.737 7.737 0 0 0 .433 1.499z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
         </div>
 
         <!-- Search Form -->
-        <form th:action="@{/tasks}" method="get" class="mb-4 d-flex justify-content-center">
+        <form th:action="@{/tasks}" method="get" class="mb-4 flex justify-center">
             <input type="text" name="keyword" th:value="${keyword}" placeholder="🔍 Search tasks..."
-                   class="form-control shadow-sm" style="max-width: 400px;" />
+                   class="elegant-input w-full max-w-md shadow-sm" />
         </form>
 
         <!-- Task Input Form -->
-        <form th:action="@{/tasks}" th:object="${task}" method="post" class="card p-4 mb-5 bg-white">
+        <form th:action="@{/tasks}" th:object="${task}" method="post" class="card p-6 mb-5 bg-white shadow-lg rounded-lg max-w-2xl mx-auto">
             <input type="hidden" th:field="*{id}" />
-            <div class="mb-3">
-                <label class="form-label fw-semibold">Title</label>
-                <input type="text" th:field="*{title}" class="form-control" required />
+            <div class="mb-4">
+                <label class="elegant-label">Title</label>
+                <input type="text" th:field="*{title}" class="elegant-input w-full" required />
             </div>
-            <div class="mb-3">
-                <label class="form-label fw-semibold">Description</label>
-                <textarea th:field="*{description}" class="form-control" rows="4" required></textarea>
+            <div class="mb-4">
+                <label class="elegant-label">Description</label>
+                <textarea th:field="*{description}" class="elegant-textarea w-full" rows="4" required></textarea>
             </div>
-            <div class="mb-3">
-                <label class="form-label fw-semibold">Priority</label>
-                <select th:field="*{priority}" class="form-select" required>
+            <div class="mb-4">
+                <label class="elegant-label">Priority</label>
+                <select th:field="*{priority}" class="elegant-select w-full" required>
                     <option value="" disabled selected>Select priority</option>
                     <option value="HIGH">🔥 High</option>
                     <option value="MEDIUM">⚠️ Medium</option>
                     <option value="LOW">✅ Low</option>
                 </select>
             </div>
-            <button type="submit" class="btn btn-success px-4">💾 Save Task</button>
+            <div class="flex flex-wrap mb-4 -mx-2">
+                <div class="w-full md:w-1/2 px-2 mb-4 md:mb-0">
+                    <label class="elegant-label">Deadline Date</label>
+                    <input type="text" id="deadlineDate" th:field="*{deadlineDate}" class="flatpickr-input elegant-input w-full" placeholder="Select Date" />
+                </div>
+                <div class="w-full md:w-1/2 px-2">
+                    <label class="elegant-label">Deadline Time</label>
+                    <input type="text" id="deadlineTime" th:field="*{deadlineTime}" class="flatpickr-input elegant-input w-full" placeholder="Select Time" />
+                </div>
+            </div>
+            <button type="submit" class="elegant-button">💾 Save Task</button>
         </form>
 
         <!-- Task Cards -->
@@ -382,7 +512,17 @@
                             <small class="text-muted">ID: <span th:text="${task.id}"></span></small>
                         </p>
                         <p class="card-text">
-                            <small class="text-muted">Date: <span th:text="${task.createdDate}"></span></small>
+                            <small class="text-muted">Created Date: <span th:text="${task.createdDate}"></span></small>
+                        </p>
+                        <p class="deadline-display">
+                            <i class="bi bi-calendar mr-2"></i>
+                            Deadline: 
+                            <span th:if="${task.deadlineDate} != null and ${task.deadlineTime} != null">
+                                <span th:text="${task.deadlineDate}"></span>
+                                <i class="bi bi-clock ml-2 mr-2"></i>
+                                <span th:text="${task.deadlineTime}"></span>
+                            </span>
+                            <span th:unless="${task.deadlineDate} != null and ${task.deadlineTime} != null">Not Set</span>
                         </p>
                         <p class="card-text">
                             <span th:switch="${task.priority}">
@@ -414,17 +554,33 @@
         </div>
     </div>
 
-    <!-- Bootstrap JS Bundle for Dropdowns -->
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Theme Toggle and Card Color Script -->
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- Theme Toggle, Card Color, and Flatpickr Initialization Script -->
     <script>
-        /************* ✨ Windsurf Command ⭐ *************/
-        /** 
-         * Toggle the theme of the page between light-mode and dark-mode
-         * by updating the class name of the body element and storing the
-         * current theme in local storage.
-         */
-        /******* 070cbba8-ce1f-4822-b75b-03ab01ea8671 *******/
+        // Initialize Flatpickr for Deadline Date
+        flatpickr("#deadlineDate", {
+            dateFormat: "Y-m-d",
+            theme: "light",
+            onOpen: function() {
+                document.querySelector(".flatpickr-calendar").classList.add("shadow-lg", "rounded-lg");
+            }
+        });
+
+        // Initialize Flatpickr for Deadline Time
+        flatpickr("#deadlineTime", {
+            enableTime: true,
+            noCalendar: true,
+            dateFormat: "H:i:S",
+            time_24hr: true,
+            onOpen: function() {
+                document.querySelector(".flatpickr-calendar").classList.add("shadow-lg", "rounded-lg");
+            }
+        });
+
+        // Theme Toggle and Card Color Functions
         function toggleTheme() {
             const body = document.body;
             const theme = body.classList.contains('dark-mode') ? 'light-mode' : 'dark-mode';
@@ -449,7 +605,7 @@
 
         function changeCardColor(event, taskId, color) {
             event.preventDefault();
-            console.log(`Changing color for task ${taskId} to ${color}`); // Debug log
+            console.log(`Changing color for task ${taskId} to ${color}`);
             const card = document.querySelector(`.task-card[data-task-id="${taskId}"]`);
             if (card) {
                 card.classList.remove('bg-custom-default', 'bg-custom-purple', 'bg-custom-blue', 'bg-custom-yellow', 'bg-custom-pink', 'bg-custom-orange');

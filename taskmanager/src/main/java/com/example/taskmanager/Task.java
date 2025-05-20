@@ -2,6 +2,7 @@ package com.example.taskmanager;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 public class Task {
@@ -20,6 +21,13 @@ public class Task {
 
     // ✅ Priority level (HIGH, MEDIUM, LOW)
     private String priority;
+
+    // ✅ Deadline Date and Time
+    @Column(nullable = true)
+    private LocalDate deadlineDate;
+
+    @Column(nullable = true)
+    private LocalTime deadlineTime;
 
     // === Getters and Setters ===
 
@@ -69,5 +77,21 @@ public class Task {
 
     public void setPriority(String priority) {
         this.priority = priority;
+    }
+
+    public LocalDate getDeadlineDate() {
+        return deadlineDate;
+    }
+
+    public void setDeadlineDate(LocalDate deadlineDate) {
+        this.deadlineDate = deadlineDate;
+    }
+
+    public LocalTime getDeadlineTime() {
+        return deadlineTime;
+    }
+
+    public void setDeadlineTime(LocalTime deadlineTime) {
+        this.deadlineTime = deadlineTime;
     }
 }
